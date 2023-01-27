@@ -8,7 +8,18 @@ class Place(models.Model):
     description_long = models.TextField('Полное описание')
     longitude = models.FloatField('Долгота')
     latitude = models.FloatField('Широта')
-    images = models.JSONField('Изображения')
 
     def __str__(self):
         return self.title
+
+
+class Image(models.Model):
+    index_number = models.IntegerField(null=True)
+    image = models.ImageField(upload_to='img', null=True)
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        related_name='images')
+
+    def __str__(self):
+        return f'{self.place} - {self.index_number}'
