@@ -15,7 +15,7 @@ class Place(models.Model):
 
 class Image(models.Model):
     index_number = models.IntegerField(null=True)
-    image = models.ImageField(upload_to='img', null=True)
+    image = models.ImageField(null=True)
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
