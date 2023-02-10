@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from places.models import Place
 
+moscow_legends = Place.objects.get(place_id='moscow_legends')
+roofs24 = Place.objects.get(place_id='roofs24')
 
 places = {
     "type": "FeatureCollection",
@@ -8,11 +11,12 @@ places = {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [37.62, 55.793676]
+                "coordinates": [moscow_legends.longitude,
+                                moscow_legends.latitude]
             },
             "properties": {
-                "title": "«Легенды Москвы",
-                "placeId": "moscow_legends",
+                "title": moscow_legends.title,
+                "place_id": moscow_legends.place_id,
                 "detailsUrl": "https://raw.githubusercontent.com/devmanorg/where-to-go-frontend/master/places/moscow_legends.json"
             }
         },
@@ -20,11 +24,12 @@ places = {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [37.64, 55.753676]
+                "coordinates": [roofs24.longitude,
+                                roofs24.latitude]
             },
             "properties": {
-                "title": "Крыши24.рф",
-                "placeId": "roofs24",
+                "title": roofs24.title,
+                "place_id": roofs24.place_id,
                 "detailsUrl": "https://raw.githubusercontent.com/devmanorg/where-to-go-frontend/master/places/roofs24.json"
             }
         }

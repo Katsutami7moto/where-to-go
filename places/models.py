@@ -4,10 +4,11 @@ from django.db import models
 
 class Place(models.Model):
     title = models.CharField('Название', max_length=200)
+    place_id = models.CharField('ID места', max_length=200)
     description_short = models.TextField('Краткое описание')
-    description_long = models.TextField('Полное описание')
-    longitude = models.FloatField('Долгота')
-    latitude = models.FloatField('Широта')
+    description_long = models.TextField('Полное описание', blank=True)
+    longitude = models.FloatField('Долгота', default=0.0)
+    latitude = models.FloatField('Широта', default=0.0)
 
     def __str__(self):
         return self.title
